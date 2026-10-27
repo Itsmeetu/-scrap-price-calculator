@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Free offline scrap transport, delivered cost, margin and credit cost calculator.">
+<title>Scrap Price Calculator</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#19332d;background:#f3f5ef}*{box-sizing:border-box}body{margin:0}main{max-width:1100px;margin:auto;padding:32px 20px}header{margin:16px 0 30px}.tag{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#527369}h1{font-size:clamp(30px,5vw,48px);letter-spacing:-1.5px;margin:12px 0}p{line-height:1.6;color:#52645e}.layout{display:grid;grid-template-columns:1fr 1fr;gap:24px}.panel{background:white;border:1px solid #dbe3d9;border-radius:20px;padding:24px}h2{font-size:20px;margin:0 0 20px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:18px}label{display:block;font-size:13px;font-weight:600}input{width:100%;margin-top:7px;padding:13px;border:1px solid #b9c9bf;border-radius:9px;font:inherit;color:#19332d}input:focus{outline:2px solid #348161;outline-offset:2px}.wide{grid-column:1/-1}small{display:block;margin-top:8px;color:#5c6d65;line-height:1.5}.hero{background:#183e32;color:white;border-radius:13px;padding:22px;margin-bottom:18px}.hero span{display:block;color:#b9d5c3;font-size:13px}.hero strong{display:block;font-size:37px;margin:7px 0}.hero small{color:#c1d8c9}.row{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid #e7ece5;font-size:14px}.row strong{text-align:right}button{cursor:pointer;background:#215b44;color:white;border:0;border-radius:10px;padding:14px 18px;font:inherit;font-weight:600;margin-top:20px;width:100%}button:disabled{opacity:.5;cursor:default}#error{color:#a32c22;min-height:24px}footer{margin-top:24px;font-size:13px}details{margin-top:24px}summary{cursor:pointer;font-weight:600}.muted{font-size:13px}@media(max-width:720px){.layout{grid-template-columns:1fr}main{padding:22px 14px}.panel{padding:20px}.fields{gap:15px}}@media(max-width:360px){.fields{grid-template-columns:1fr}.wide{grid-column:auto}}
+</style>
+</head>
+<body><main>
+<header><div class="tag">Open-source • No login • Works offline</div><h1>Know your delivered cost.</h1><p>Calculate scrap freight, trading margin and the cost of offering credit. All amounts are in INR, excluding GST.</p></header>
+<div class="layout"><section class="panel"><h2>Load & pricing</h2>
+<form id="pricing"><div class="fields">
+<label class="wide">Material / quotation title<input id="material" maxlength="120" value="Polyester scrap — sample quotation"></label>
+<label>Quantity (metric tons)<input id="quantity" type="number" min="0.001" step="any" value="10" required></label>
+<label>Purchase price (₹/kg)<input id="purchase" type="number" min="0" step="any" value="30" required></label>
+<label>Total freight (₹/load)<input id="freight" type="number" min="0" step="any" value="20000" required></label>
+<label>Other costs (₹/load)<input id="expenses" type="number" min="0" step="any" value="2000" required></label>
+<label>Selling price (₹/kg)<input id="selling" type="number" min="0" step="any" value="35" required></label>
+<label>Annual finance rate (%)<input id="annualRate" type="number" min="0" step="any" value="12" required></label>
+<label>Credit period (days)<input id="days" type="number" min="0" step="any" value="14" required></label>
+</div><small>Sample inputs are illustrative, not market prices. Use zero days for immediate payment. Freight is the full load cost.</small></form>
+<p id="error" role="alert"></p></section>
+<section class="panel" aria-label="Calculation results"><h2>Your estimate</h2><div id="results" aria-live="polite"></div><button id="download" type="button">Download customer quotation (.txt)</button><small>The customer quotation contains selling terms only. Your purchase costs and margin stay private.</small></section></div>
+<details><summary>How the calculation works</summary><p>1 metric ton = 1,000 kg. Delivered cost = purchase cost + full-load freight + other costs. Financing uses simple interest on that total: delivered cost × annual rate × days ÷ 365. Break-even includes financing; margin is profit divided by sales revenue. These figures exclude GST, defaults, weight loss and any costs you have not entered. Financing is an estimate; actual lender charges may differ.</p></details>
+<footer><p>Your entries are processed in this browser. No analytics, accounts, external scripts or data uploads. Values are not saved when you reload. Review quantities and commercial terms before sending a quotation.</p></footer>
+</main><script src="calculator.js"></script><script src="app.js"></script></body></html>
